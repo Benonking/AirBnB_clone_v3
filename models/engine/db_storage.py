@@ -78,14 +78,14 @@ class DBStorage:
         '''
         retrieve a single object
         '''
-        objs = self.all(cls)
-        if cls and id:
-            for key, value in objs:
-                obj = '{}.{}'.format(cls.__name__, id)
-                if obj == key:
-                    return value
-            return objs.get(obj)
-        return None
+        """A method to retrieve one object"""
+        if cls is None and id is None:
+            return None
+        all_objs = self.all(cls)
+        for k, v in all_objs.items():
+            obj = "{}.{}".format(cls.__name__, id)
+            if obj == k:
+                return v
     
     def count(self, cls=None):
         if cls:
