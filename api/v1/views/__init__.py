@@ -1,3 +1,4 @@
 from api.v1.views.index import *
-from flask import Blueprint, jsonify
-app_views = Blueprint('/api/v1')
+from flask import Blueprint
+
+app_views = Blueprint(url_prefix='/api/v1')
