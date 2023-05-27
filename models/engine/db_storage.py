@@ -78,9 +78,12 @@ class DBStorage:
         '''
         retrieve a single object
         '''
+        objs = self.all(cls)
         if cls and id:
-            obj = '{}.{}'.format(cls, id)
-            objs = self.all(cls)
+            for key, value in objs:
+                obj = '{}.{}'.format(cls.__name__, id)
+                if obj == key:
+                    return value
             return objs.get(obj)
         return None
     
