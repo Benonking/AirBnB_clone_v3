@@ -9,7 +9,7 @@ app = Flask(__name__)
 app.register_blueprint(app_views)
 
 @app.teardown_appcontext
-def cloz():
+def cloz(exec):
     '''display route / hello HBNB!'''
     storage.close()
 
