@@ -53,5 +53,5 @@ def update_state(state_id):
          abort(404)
      data = request.get_json()
      state.name = data['name']
-     state.saveclear()
+     state.save()
      return jsonify(state.to_dict()), 200
