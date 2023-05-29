@@ -1,3 +1,13 @@
+#!/usr/bin/python3
+'''
+module states
+implements methods
+    create_state
+    get_states
+    get_state
+    update_state
+    delete_state
+'''
 from models import storage
 from api.v1.views import app_views
 from flask import jsonify, abort, request
@@ -5,13 +15,13 @@ from models import storage
 from models.state import State
 
 @app_views.route('/states', strict_slashes=False, methods=['GET'])
-def states():
+def get_states():
     '''retrive all state objects i json form '''
     stateList = [s.to_dict() for s in storage.all('State'). values()]
     return jsonify(stateList)
 
 @app_views.route('/states/<state_id>', strict_slashes=False, methods=['GET'])
-def get_state_id(state_id):
+def get_state(state_id):
     '''return state id'''
     state = storage.get(State, state_id)
     if state is None:
