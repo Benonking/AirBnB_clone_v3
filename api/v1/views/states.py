@@ -52,6 +52,11 @@ def update_state(state_id):
      if state is None:
          abort(404)
      data = request.get_json()
-     state.name = data['name']
+     ignore = ('id', 'create_at', 'updated_at')
+     for k in data.keys():
+         if k in ignore:
+             pass
+         else:
+             setattr(state, k, data[k])
      state.save()
      return jsonify(state.to_dict()), 200

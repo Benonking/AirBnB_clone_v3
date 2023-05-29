@@ -65,7 +65,12 @@ def update_amenity(amenity_id):
         abort(404)
 
     dt  = request.get_json()
-    amenity.name=dt['name']
+    ignore = ('id', 'created_at', 'update_at')
+    for k in dt.keys():
+        if k in ignore:
+            pass
+        else:
+            setattr(amenity, k, dt[k])
     amenity.save()
     return jsonify(amenity.to_dict()), 200
 
