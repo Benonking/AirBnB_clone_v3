@@ -8,7 +8,7 @@ from flask import  Flask, jsonify, make_response
 from models import storage
 from flask_cors import CORS
 from api.v1.views import app_views
-import os, json
+import os
 HOST = os.environ.get('HBNB_API_HOST')
 PORT = os.environ.get('HBNB_API_PORT')
 
