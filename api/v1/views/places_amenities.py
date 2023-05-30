@@ -9,7 +9,7 @@ from api.v1.views import app_views
 from flask import jsonify, abort, request, make_response
 
 
-@app_view.route('places/<place_id>/amenities', strict_slashes=False,
+@app_views.route('places/<place_id>/amenities', strict_slashes=False,
                 methods=['GET'])
 def place_amenities(place_id):
     """Retrieves the list of all Amenity objects of a Place"""
@@ -22,7 +22,7 @@ def place_amenities(place_id):
         return jsonify([amenity.to_dict() for amenity in place.amenities])
 
 
-@app_view.route('places/<place_id>/amenities/<amenity_id>',
+@app_views.route('places/<place_id>/amenities/<amenity_id>',
                 strict_slashes=False, methods=['DELETE', 'POST'])
 def amenities_in_place(place_id, amenity_id):
     """Manipulates the list of all Amenity objects of a Place"""
