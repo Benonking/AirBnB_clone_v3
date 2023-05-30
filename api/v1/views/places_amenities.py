@@ -16,10 +16,9 @@ def place_amenities(place_id):
     place = storage.get(Place, place_id)
     if not place:
         abort(404)
-    if request.json == 'GET':
-        if not place.amenities:
-            return jsonify([])
-        return jsonify([amenity.to_dict() for amenity in place.amenities])
+    if not place.amenities:
+        return jsonify([])
+    return jsonify([amenity.to_dict() for amenity in place.amenities])
 
 
 @app_views.route('places/<place_id>/amenities/<amenity_id>',
