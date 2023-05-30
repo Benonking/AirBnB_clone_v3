@@ -26,11 +26,10 @@ def place_amenities(place_id):
 def amenities_in_place(place_id, amenity_id):
     """Manipulates the list of all Amenity objects of a Place"""
     place = storage.get(Place, place_id)
-    if not place:
-        abort(404)
     amenity = storage.get(Amenity, amenity_id)
-    if not amenity:
+    if not amenity or not place:
         abort(404)
+
     if request.json == 'DELETE':
         if amenity not in place.amenities:
             abort(404)
